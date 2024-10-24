@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Camera - Awaiting Admin Access</title>
+    <style>
+        .btn { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>User Camera Feed</h1>
+    <video id="userCam" width="640" height="480" autoplay></video>
+    <p id="status">Waiting for admin to request camera access...</p>
+
+    <script>
+        const statusElement = document.getElementById("status");
+        const userVideoElement = document.getElementById("userCam");
+
+        // WebRTC setup
+        const peerConnection = new RTCPeerConnection({
+            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        });
+
+        // WebSocket connection for signaling
+        const signalingServer = new WebSocket('ws://localhost:3000');
+
+        signalingServer.onmessage = async (event) => {
+            const message = JSON.parse(event.data);
+            handleMessage(message);
+        };
+
+        function handleMessage(message) {
+            if (message.command === "startCamera") {
+                statusElement.innerText = "Admin is accessing your camera...";
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        userVideoElement.srcObject = stream;
+                        stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+                        peerConnection.createOffer().then(offer => {
+                            return peerConnection.setLocalDescription(offer);
+                        }).then(() => {
+                            signalingServer.send(JSON.stringify({ offer: peerConnection.localDescription }));
+                        });
+                    })
+                    .catch(err => {
+                        console.error("Error accessing camera: ", err);
+                        statusElement.innerText = "Failed to access your camera.";
+                    });
+            } else if (message.offer) {
+                peerConnection.setRemoteDescription(new RTCSessionDescription(message.offer))
+                    .then(() => peerConnection.createAnswer())
+                    .then(answer => {
+                        return peerConnection.setLocalDescription(answer)
+                            .then(() => signalingServer.send(JSON.stringify({ answer })));
+                    });
+            }
+        }
+
+        peerConnection.onicecandidate = (event) => {
+            if (event.candidate) {
+                signalingServer.send(JSON.stringify({ iceCandidate: event.candidate }));
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{
+  "questions": [
+    {
+      "question": "What is the size of an int data type in Java?",
+      "answers": [
+        { "text": "1 Byte", "correctAnswer": false },
+        { "text": "2 Byte", "correctAnswer": false },
+        { "text": "4 Byte", "correctAnswer": true },
+        { "text": "3 Byte", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "What is the default value of a boolean variable?",
+      "answers": [
+        { "text": "true", "correctAnswer": false },
+        { "text": "false", "correctAnswer": true },
+        { "text": "null", "correctAnswer": false },
+        { "text": "0", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "Which keyword is used to inherit a class in Java?",
+      "answers": [
+        { "text": "implements", "correctAnswer": false },
+        { "text": "extends", "correctAnswer": true },
+        { "text": "inherit", "correctAnswer": false },
+        { "text": "super", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "Which is a valid main method declaration?",
+      "answers": [
+        { "text": "public void main(String[] args)", "correctAnswer": false },
+        { "text": "public static void main(String[] args)", "correctAnswer": true },
+        { "text": "public static int main(String args)", "correctAnswer": false },
+        { "text": "public static void main()", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "Which is not a primitive data type in Java?",
+      "answers": [
+        { "text": "int", "correctAnswer": false },
+        { "text": "boolean", "correctAnswer": false },
+        { "text": "float", "correctAnswer": false },
+        { "text": "String", "correctAnswer": true }
+      ]
+    },
+    {
+      "question": "What does the final keyword represent when applied to a variable?",
+      "answers": [
+        { "text": "int", "correctAnswer": false },
+        { "text": "Inheritable", "correctAnswer": false },
+        { "text": "Value cannot be changed", "correctAnswer": true },
+        { "text": "Abstract", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "What is the output of System.out.println(10 + 20 + Java);?",
+      "answers": [
+        { "text": "Java30", "correctAnswer": false },
+        { "text": "Java1020", "correctAnswer": false },
+        { "text": "30Java", "correctAnswer": true },
+        { "text": "1020Java", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "Which is a post-test loop?",
+      "answers": [
+        { "text": "do-while", "correctAnswer": true },
+        { "text": "for", "correctAnswer": false },
+        { "text": "while", "correctAnswer": false },
+        { "text": "foreach", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "What is the parent class of all classes in Java?",
+      "answers": [
+        { "text": "java.lang.String", "correctAnswer": false },
+        { "text": "java.util.List", "correctAnswer": false },
+        { "text": "java.lang.Object", "correctAnswer": true },
+        { "text": "java.io.Serializable", "correctAnswer": false }
+      ]
+    },
+    {
+      "question": "Which package contains the Scanner class?",
+      "answers": [
+        { "text": "java.io", "correctAnswer": false },
+        { "text": "java.util", "correctAnswer": true },
+        { "text": "java.lang", "correctAnswer": false },
+        { "text": "java.net", "correctAnswer": false }
+      ]
+    }
+  ]
+}
